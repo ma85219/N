@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="C:\Users\ma852\Desktop\JS\gameStyle.css" />
+		<script>
+			var number;
+			var goes = 0;
+			function generateNumber() {
+				number = Math.floor(Math.random()*100)+1;
+				alert("I have thought of a number " + number);
+				document.getElementById("btnGenerate").disabled = false;
+				
+			}
+			
+			function checkNumber() {
+				guess = document.getElementById("guess").value
+				if(guess=="" || isNaN(guess)){
+					document.getElementById("remind").innerHTML = "Not a number";
+					document.getElementById("guess").style.backgroundColor = "Maroon";
+					document.getElementById("guess").style.color = "white";
+					
+				}else{
+				if (guess == number) {
+					alert("You got it")
+					document.getElementById("guess").style.backgroundColor = "YellowGreen";
+					document.getElementById("btnGenerate").disabled = false;
+					document.getElementById("btnCheck").disabled = true;
+					document.getElementById("guess").value = "";
+					document.getElementById("aa").innerHTML = "You got it";
+				}else if(guess<number){
+					alert("Your guess is too low");
+					document.getElementById("guess").style.backgroundColor = "orange";
+					document.getElementById("aa").innerHTML = "Your guess is too low";
+				}else {
+					if(guess<1||guess>100){
+					alert("Please enter number between 1 to 100")
+					}else{
+					alert("Your guess is too high");
+					document.getElementById("guess").style.backgroundColor = "red";
+					document.getElementById("aa").innerHTML = "Your guess is too high";
+				}
+				goes += 1
+			
+			document.getElementById("goes").innerHTML = goes;
+			}
+			}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Number guessing game</h1>
+		<p>Click the button below and I will think of a number
+		betwen 1 and 10</p>
+		<button onclick="generateNumber()" id="btnGenerate">Think of a number</button>
+		<p>Now put in your guess it this box and click the button
+		to check it </p>
+		<button onclick="checkNumber()" id="btnCheck">Check Number</button>
+		<p><input type="text" id="guess"><span id="remind"></span></p>
+		<p>So far it has taken you <span id="goes">0</span>
+		goes to guess number
+		<p id="aa"></p>
+	</body>
+</html>
